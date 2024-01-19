@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Container, Col, Row } from "react-bootstrap"
 import { ArrowRightCircle } from 'react-bootstrap-icons'
+import { HashLink } from "react-router-hash-link"
+import { BrowserRouter as Router } from 'react-router-dom'
+import TrackVisibility from 'react-on-screen'
 import headerImg from '../assets/img/header-img.svg'
+import "animate.css"
 
 export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0)
@@ -54,20 +58,30 @@ export const Banner = () => {
     }
 
     return (
-        <section className="banner" id="home">
-            <Container>
-                <Row className="align-items-center">
-                    <Col xs={12} md={6} xl={7}>
-                        <span className="tagline">Seja Bem-Vindo ao meu Portfólio</span>
-                        <h1>{`Oi! Eu sou Amanda `}<span className="wrap">{text}</span></h1>
-                        <p>Tenho {getAge()} anos, sou técnica em informática e tecnóloga em Análise e Desenvolvimento de Sistemas em formação. Atuo principalmente com NodeJS. Vamos trabalhar juntos?</p>
-                        <button onClick={() => console.log('connect')}>Entre em contato <ArrowRightCircle size={25} /></button>
-                    </Col>
-                    <Col xs={12} md={6} xl={5}>
-                        <img src={headerImg} alt="" />
-                    </Col>
-                </Row>
-            </Container>
-        </section>
+        <Router>
+            <section className="banner" id="home">
+                <Container>
+                    <Row className="align-items-center">
+                        <Col xs={12} md={6} xl={7}>
+                            <TrackVisibility>
+                                {({ isVisible }) =>
+                                    <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+                                        <span className="tagline">Seja Bem-Vindo ao meu Portfólio</span>
+                                        <h1>{`Oi! Eu sou Amanda `}<span className="wrap">{text}</span></h1>
+                                        <p>Tenho {getAge()} anos, sou técnica em informática e tecnóloga em Análise e Desenvolvimento de Sistemas em formação. Atuo principalmente com NodeJS. Vamos trabalhar juntos?</p>
+                                        <HashLink to='#connect'>
+                                            <button>Entre em contato <ArrowRightCircle size={25} /></button>
+                                        </HashLink>
+                                    </div>
+                                }
+                            </TrackVisibility>
+                        </Col>
+                        <Col xs={12} md={6} xl={5}>
+                            <img src={headerImg} alt="" />
+                        </Col>
+                    </Row>
+                </Container>
+            </section>
+        </Router>
     )
 }

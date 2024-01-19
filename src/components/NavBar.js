@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { Navbar, Nav, Container } from "react-bootstrap"
+import { HashLink } from "react-router-hash-link"
+import { BrowserRouter as Router } from 'react-router-dom'
 import logo from '../assets/img/logo.svg'
 import navIcon1 from '../assets/img/nav-icon1.svg'
 import navIcon2 from '../assets/img/nav-icon2.svg'
@@ -28,32 +30,40 @@ export const NavBar = () => {
     }
 
     return (
-        <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
-            <Container>
-                <Navbar.Brand href="/">
-                    <img src={logo} alt="Logo" />
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav">
-                    <span className="navbar-toggler-icon" />
-                </Navbar.Toggle>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto">
-                        <Nav.Link href="#home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Página Inicial</Nav.Link>
-                        <Nav.Link href="#skils" className={activeLink === 'skils' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('skils')}>Habilidades</Nav.Link>
-                        <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>Projetos</Nav.Link>
-                    </Nav>
-                    <span className="navbar-text">
-                        <div className="social-icon">
-                            <a href="www.linkedin.com/in/amanda-aparecida-julio-maziero"><img src={navIcon1} alt="Linkedin" /></a>
-                            <a href="https://www.facebook.com/amandajuliomaziero/"><img src={navIcon2} alt="Facebook" /></a>
-                            <a href="https://www.instagram.com/mandymaziero/"><img src={navIcon3} alt="Instagram" /></a>
-                        </div>
-                        <button className="vvd" onClick={() => console.log("connect")}>
-                            <span>Entre em contato</span>
-                        </button>
-                    </span>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
+        <Router>
+            <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
+                <Container>
+                    <Navbar.Brand href="/">
+                        <img src={logo} alt="Logo" />
+                    </Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav">
+                        <span className="navbar-toggler-icon" />
+                    </Navbar.Toggle>
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="ms-auto">
+                            <HashLink to="#home">
+                                <Nav.Link href="#home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Página Inicial</Nav.Link>
+                            </HashLink>
+                            <HashLink to="#skills">
+                                <Nav.Link href="#skills" className={activeLink === 'skills' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('skills')}>Habilidades</Nav.Link>
+                            </HashLink>
+                            <HashLink to="#projects">
+                                <Nav.Link href="#projects" className={activeLink === 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>Projetos</Nav.Link>
+                            </HashLink>
+                        </Nav>
+                        <span className="navbar-text">
+                            <div className="social-icon">
+                                <a href="www.linkedin.com/in/amanda-aparecida-julio-maziero"><img src={navIcon1} alt="Linkedin" /></a>
+                                <a href="https://www.facebook.com/amandajuliomaziero/"><img src={navIcon2} alt="Facebook" /></a>
+                                <a href="https://www.instagram.com/mandymaziero/"><img src={navIcon3} alt="Instagram" /></a>
+                            </div>
+                            <HashLink to='#connect'>
+                                <button className="vvd"><span>Entre em contato</span></button>
+                            </HashLink>
+                        </span>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+        </Router>
     )
 }
