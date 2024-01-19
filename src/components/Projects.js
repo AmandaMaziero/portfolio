@@ -3,6 +3,7 @@ import { ProjectCard } from "./ProjectCard";
 import projImg1 from "../assets/img/getapet1.jpeg";
 import projImg2 from "../assets/img/toughts2.jpeg";
 import projImg3 from "../assets/img/loja1.png";
+import projImg4 from "../assets/img/swagger1.png";
 import colorSharp2 from "../assets/img/color-sharp2.png";
 import TrackVisibility from "react-on-screen";
 import "animate.css";
@@ -26,6 +27,11 @@ export const Projects = () => {
             title: "Loja",
             description: "Um projeto realizado para a disciplina de Laboratório de Banco de Dados. (PHP e Bootstrap)",
             imgUrl: projImg3,
+        },
+        {
+            title: "ShopScore API",
+            description: "Um projeto que consiste em ser uma plataforma de avaliações. (Somente Api em NodeJS)",
+            imgUrl: projImg4,
         }
     ]
 
